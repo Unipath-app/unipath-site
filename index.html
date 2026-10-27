@@ -92,6 +92,15 @@
   </div>
 </section>
 
+<div class="faixa" aria-label="Algumas das federais que entram pelo Sisu">
+  <ul class="faixa__trilho">
+    <li>UFMG</li><li>UFRJ</li><li>UnB</li><li>UFBA</li><li>UFPE</li><li>UFC</li><li>UFRGS</li><li>UFSC</li><li>UFPR</li><li>UFF</li><li>UFSCar</li><li>Unifesp</li><li>UFPA</li><li>UFAM</li><li>UFG</li><li>UFRN</li><li>UFPB</li><li>UFAL</li><li>UFPI</li><li>UFMA</li><li>UFES</li><li>UFJF</li><li>UFV</li><li>UFU</li><li>UFOP</li><li>UTFPR</li><li>UFABC</li><li>UFCG</li><li>FURG</li><li>UFSM</li><li>UFAC</li><li>UFCA</li>
+  </ul>
+  <ul class="faixa__trilho" aria-hidden="true">
+    <li>UFMG</li><li>UFRJ</li><li>UnB</li><li>UFBA</li><li>UFPE</li><li>UFC</li><li>UFRGS</li><li>UFSC</li><li>UFPR</li><li>UFF</li><li>UFSCar</li><li>Unifesp</li><li>UFPA</li><li>UFAM</li><li>UFG</li><li>UFRN</li><li>UFPB</li><li>UFAL</li><li>UFPI</li><li>UFMA</li><li>UFES</li><li>UFJF</li><li>UFV</li><li>UFU</li><li>UFOP</li><li>UTFPR</li><li>UFABC</li><li>UFCG</li><li>FURG</li><li>UFSM</li><li>UFAC</li><li>UFCA</li>
+  </ul>
+</div>
+
 <section class="jornada" id="jornada" aria-labelledby="jornada-titulo">
   <div class="jornada__cabeca">
     <h2 id="jornada-titulo">Uma tela para cada fase</h2>
@@ -251,8 +260,29 @@
       <div class="regua__trilho"><span class="regua__corte" id="res-marca"></span><span class="regua__voce" id="res-voce"></span></div>
       <div class="regua__legenda"><span>Você</span><span>Nota de corte <b id="res-corte">698,12</b></span></div>
     </div>
+    <div class="composicao">
+      <p class="composicao__titulo">De onde vem sua média</p>
+      <div class="composicao__barra" id="res-barra"></div>
+      <ul class="composicao__legenda" id="res-legenda"></ul>
+    </div>
     <p class="resultado__nota">Nota de corte de exemplo. No app, a chance vem do histórico de 2018 a 2025 do curso e da sua modalidade de cota.</p>
   </div>
+</section>
+
+<section class="calendario" aria-labelledby="cal-titulo">
+  <div class="calendario__cabeca">
+    <h2 id="cal-titulo">Cinco meses, prazos curtos</h2>
+    <p>Entre a prova do Enem e o primeiro dia de aula cabem sete momentos que decidem a vaga. As datas mudam a cada edição; no app, elas vêm do calendário oficial e chegam como lembrete.</p>
+  </div>
+  <ol class="calendario__linha" id="calendario">
+    <li><span class="calendario__mes">Nov</span><h3>Provas do Enem</h3><p>Dois domingos de prova. A nota vale para o Sisu do ano seguinte.</p></li>
+    <li><span class="calendario__mes">Jan</span><h3>Resultado do Enem</h3><p>As notas de cada área saem na Página do Participante.</p></li>
+    <li class="curto"><span class="calendario__mes">Jan</span><h3>Inscrição no Sisu</h3><p>Poucos dias para escolher até duas opções de curso e a modalidade de cota.</p><em>Prazo curto</em></li>
+    <li><span class="calendario__mes">Jan</span><h3>Nota de corte parcial</h3><p>Sai uma vez por dia enquanto a inscrição está aberta. Dá para trocar de curso.</p></li>
+    <li class="curto"><span class="calendario__mes">Fev</span><h3>Chamada e lista de espera</h3><p>Quem não foi chamado precisa manifestar interesse para continuar concorrendo.</p><em>Prazo curto</em></li>
+    <li class="curto"><span class="calendario__mes">Fev</span><h3>Matrícula</h3><p>Documentos e comprovação da cota no prazo da própria universidade.</p><em>Prazo curto</em></li>
+    <li><span class="calendario__mes">Mar</span><h3>Primeiro dia de aula</h3><p>Calendário acadêmico, restaurante e moradia já na ficha da sua federal.</p></li>
+  </ol>
 </section>
 
 <section class="fichas" id="universidades" aria-labelledby="fichas-titulo">
@@ -286,13 +316,19 @@
         <h3>Notas de corte de 2018 a 2025</h3>
         <p>Veja como a nota de corte de cada curso variou edição a edição, separada por modalidade de cota.</p>
       </div>
-      <div class="grafico" aria-hidden="true">
+      <div class="grafico__controles">
+        <div class="grafico__cursos" role="group" aria-label="Curso do gráfico" id="grafico-cursos"></div>
+        <div class="grafico__modos" role="group" aria-label="Modalidade" id="grafico-modos"></div>
+      </div>
+      <dl class="grafico__resumo" id="grafico-resumo"></dl>
+      <div class="grafico" id="grafico-corte" aria-hidden="true">
         <svg viewBox="0 0 400 160" preserveAspectRatio="none">
           <path class="grafico__area" d="M0 120 L57 104 L114 112 L171 86 L228 76 L285 90 L342 58 L400 46 L400 160 L0 160 Z"/>
           <path class="grafico__linha" pathLength="1" d="M0 120 L57 104 L114 112 L171 86 L228 76 L285 90 L342 58 L400 46"/>
         </svg>
         <div class="grafico__anos"><span>2018</span><span>2025</span></div>
       </div>
+      <p class="grafico__nota">Valores de exemplo. No app, cada curso mostra o histórico real.</p>
     </article>
 
     <article class="bloco bloco--mapa">
@@ -328,10 +364,10 @@
     </article>
 
     <dl class="bloco bloco--numeros">
-      <div><dt>5</dt><dd>fases, do Enem à formatura</dd></div>
-      <div><dt>13</dt><dd>passos entre o Sisu e a matrícula</dd></div>
-      <div><dt>11</dt><dd>federais com ficha pronta</dd></div>
-      <div><dt>75</dt><dd>links oficiais conferidos</dd></div>
+      <div><dt data-alvo="5">5</dt><dd>fases, do Enem à formatura</dd></div>
+      <div><dt data-alvo="13">13</dt><dd>passos entre o Sisu e a matrícula</dd></div>
+      <div><dt data-alvo="11">11</dt><dd>federais com ficha pronta</dd></div>
+      <div><dt data-alvo="75">75</dt><dd>links oficiais conferidos</dd></div>
     </dl>
   </div>
 </section>
