@@ -12,330 +12,332 @@
 <link rel="icon" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
-<header class="hero" id="topo">
-  <div class="hero__acima"></div>
-  <div class="hero__abaixo"></div>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topo" id="topo">
   <a class="marca" href="#topo" aria-label="UniPath, início">
-    <img src="img/icone.png" alt="" width="36" height="36">
+    <img src="img/icone.png" alt="" width="34" height="34">
     <span>UniPath</span>
   </a>
-  <a class="botao botao--acento hero__acao" href="#tour">Ver o app por dentro</a>
-  <div class="hero__trilha" aria-hidden="true"><span class="hero__pino"></span></div>
-  <h1 class="hero__titulo">
-    <span class="linha"><span>DO ENEM</span></span>
-    <span class="linha"><span>AO DIPLOMA</span></span>
-  </h1>
-  <div class="hero__titulo hero__titulo--abaixo" aria-hidden="true">
-    <span class="linha"><span data-t="DO ENEM"></span></span>
-    <span class="linha"><span data-t="AO DIPLOMA"></span></span>
-  </div>
-  <p class="hero__frase">Um app que mostra o próximo passo de quem quer entrar, e ficar, numa universidade federal.</p>
+  <nav class="topo__nav" aria-label="Principal">
+    <a href="#jornada">Como funciona</a>
+    <a href="#simulador">Simulador</a>
+    <a href="#universidades">Universidades</a>
+    <a href="#perguntas">Dúvidas</a>
+  </nav>
+  <a class="botao botao--pequeno" href="#simulador">Simular agora</a>
 </header>
 
-<main>
+<main id="conteudo">
 
-<section class="tour" id="tour" data-etapa="0" aria-labelledby="tour-titulo">
-  <div class="tour__texto">
-    <h2 id="tour-titulo" class="revela">Cada fase tem a sua tela</h2>
-    <p class="tour__lead revela">Arraste pela jornada e veja o que o UniPath mostra em cada momento.</p>
-    <div class="trilho revela">
-      <input class="trilho__entrada" id="etapa" type="range" min="0" max="4" step="1" value="0" aria-label="Fase da jornada" aria-valuetext="Explorando">
-      <div class="trilho__rotulos">
-        <button type="button" data-ir="0" aria-pressed="true">Explorando</button>
-        <button type="button" data-ir="1" aria-pressed="false">Concorrendo</button>
-        <button type="button" data-ir="2" aria-pressed="false">Ingressando</button>
-        <button type="button" data-ir="3" aria-pressed="false">Instalando-se</button>
-        <button type="button" data-ir="4" aria-pressed="false">Cursando</button>
-      </div>
-    </div>
-    <div class="tour__falas" aria-live="polite">
-      <div class="fala" data-i="0">
-        <h3>Explorando</h3>
-        <p>Você ainda está escolhendo. Coloque suas notas do Enem e o app calcula a média com o peso de cada curso e diz se a chance é muito alta, boa, arriscada ou difícil, olhando as notas de corte de 2018 a 2025.</p>
-      </div>
-      <div class="fala" data-i="1">
-        <h3>Concorrendo</h3>
-        <p>Chegou o Sisu. Minha jornada vira uma lista: notas cadastradas, duas opções de curso, cota comprovável, inscrição e lista de espera. O que não pode passar vem marcado.</p>
-      </div>
-      <div class="fala" data-i="2">
-        <h3>Ingressando</h3>
-        <p>Aprovado. Agora é o edital, os documentos, a comprovação da cota e a confirmação de matrícula, cada passo com o link oficial da sua universidade.</p>
-      </div>
-      <div class="fala" data-i="3">
-        <h3>Instalando-se</h3>
-        <p>Mudou de cidade? Procure quarto ou república perto do campus, encontre calouros procurando colega e converse pelo chat antes de fechar.</p>
-      </div>
-      <div class="fala" data-i="4">
-        <h3>Cursando</h3>
-        <p>Dentro da universidade, a ficha da sua federal junta calendário acadêmico, restaurante universitário, assistência estudantil e o sistema acadêmico.</p>
-      </div>
+<section class="hero" aria-labelledby="hero-titulo">
+  <div class="hero__texto">
+    <h1 id="hero-titulo" class="hero__titulo">
+      <span class="linha"><span>Do Enem</span></span>
+      <span class="linha"><span>ao diploma.</span></span>
+    </h1>
+    <p class="hero__frase">Para quem quer entrar numa federal pelo Sisu: o UniPath mostra suas chances, avisa o que não pode passar na matrícula e ajuda a achar onde morar perto do campus.</p>
+    <div class="hero__acoes">
+      <a class="botao" href="#simulador">Ver minhas chances</a>
+      <a class="botao botao--fantasma" href="#jornada">Conhecer o app</a>
     </div>
   </div>
 
-  <figure class="tour__palco">
-    <div class="celular" data-ui>
+  <div class="hero__palco" aria-hidden="true">
+    <svg class="hero__trilha" viewBox="0 0 520 620" preserveAspectRatio="none">
+      <path pathLength="1" d="M40 600 C 60 420, 260 470, 250 320 S 470 140, 500 20"/>
+    </svg>
+    <div class="celular celular--hero">
       <div class="celular__tela">
-
-        <div class="tela" data-i="0">
-          <div class="tela__barra"><span>Calculadora</span></div>
-          <div class="nota-resumo">
-            <span>Sua média</span>
-            <strong>712,40</strong>
-            <small>Ampla Concorrência · pesos do curso</small>
+        <div class="app-home">
+          <div class="app-home__topo">
+            <img src="img/icone.png" alt="" width="28" height="28">
+            <span class="app-home__sino"></span>
           </div>
-          <ul class="chances">
-            <li><div><b>Engenharia Civil</b><small>Integral · nota de corte 698,12</small></div><span class="selo selo--verde">Muito Alta</span></li>
-            <li><div><b>Arquitetura e Urbanismo</b><small>Integral · nota de corte 709,85</small></div><span class="selo selo--azul">Boa</span></li>
-            <li><div><b>Ciência da Computação</b><small>Integral · nota de corte 731,40</small></div><span class="selo selo--ambar">Arriscado</span></li>
-            <li><div><b>Medicina</b><small>Integral · nota de corte 794,26</small></div><span class="selo selo--vermelho">Difícil</span></li>
-          </ul>
-        </div>
-
-        <div class="tela" data-i="1">
-          <div class="tela__barra"><span>Minha jornada</span></div>
-          <p class="tela__etapa">Concorrendo</p>
-          <ul class="passos">
-            <li class="feito"><i></i><span>Cadastre suas notas do Enem</span></li>
-            <li class="feito"><i></i><span>Escolha suas duas opções de curso</span></li>
-            <li class="critico"><i></i><span>Confira se você consegue comprovar a cota<em>Não pode passar</em></span></li>
-            <li class="critico"><i></i><span>Faça a inscrição no Sisu<em>Não pode passar</em></span></li>
-            <li class="aviso"><i></i><span>A nota de corte parcial muda todo dia<em>Vale saber</em></span></li>
-            <li class="critico"><i></i><span>Manifeste interesse na lista de espera<em>Não pode passar</em></span></li>
-          </ul>
-        </div>
-
-        <div class="tela" data-i="2">
-          <div class="tela__barra"><span>Minha jornada</span></div>
-          <p class="tela__etapa">Ingressando</p>
-          <ul class="passos">
-            <li class="critico feito"><i></i><span>Leia o edital de matrícula<em>Não pode passar</em></span></li>
-            <li class="feito"><i></i><span>Separe os documentos</span></li>
-            <li><i></i><span>Junte a comprovação da cota</span></li>
-            <li class="aviso"><i></i><span>Algumas universidades pedem confirmação no início das aulas<em>Vale saber</em></span></li>
-            <li><i></i><span>Veja a assistência estudantil</span></li>
-            <li><i></i><span>Procure onde morar</span></li>
-          </ul>
-        </div>
-
-        <div class="tela" data-i="3">
-          <div class="tela__barra"><span>Moradia</span></div>
-          <div class="abas"><span class="ativa">Procuro Colega</span><span>Oferecer Vaga</span></div>
-          <div class="anuncio">
-            <div class="anuncio__planta" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-            <b>Quarto em república mista</b>
-            <small>12 min a pé do campus · 3 moradores</small>
-            <strong>R$ 650/mês</strong>
+          <p class="app-home__ola">Olá, Júlia</p>
+          <p class="app-home__titulo">Pronto para a vida universitária?</p>
+          <div class="app-home__card">
+            <small>Seu próximo passo</small>
+            <b>Faça a inscrição no Sisu</b>
+            <span class="app-tag app-tag--critico">Não pode passar</span>
           </div>
-          <div class="colega">
-            <span class="avatar">L</span>
-            <div><b>Larissa, Farmácia</b><small>Não fumante · Muito organizado</small></div>
+          <div class="app-home__grade">
+            <span><i class="ic ic--jornada"></i>Minha jornada</span>
+            <span><i class="ic ic--calc"></i>Calculadora</span>
+            <span><i class="ic ic--notas"></i>Notas do Enem</span>
+            <span><i class="ic ic--chat"></i>Mensagens</span>
           </div>
-          <div class="colega">
-            <span class="avatar avatar--b">T</span>
-            <div><b>Tiago, Engenharia</b><small>Tem pets · Acorda cedo</small></div>
-          </div>
+          <div class="app-home__botao">Ver Minhas Chances</div>
         </div>
-
-        <div class="tela" data-i="4">
-          <div class="tela__barra"><span>Minha instituição</span></div>
-          <p class="tela__etapa">UFMG · Belo Horizonte</p>
-          <ul class="links-app">
-            <li>Calendário acadêmico</li>
-            <li>Restaurante universitário</li>
-            <li>Assistência estudantil</li>
-            <li>Moradia estudantil</li>
-            <li>Sistema acadêmico</li>
-          </ul>
-        </div>
-
       </div>
     </div>
-    <figcaption>Telas do app com dados de exemplo.</figcaption>
-  </figure>
+    <div class="flutua flutua--a">
+      <span class="selo selo--verde">Muito Alta</span>
+      <div><b>Engenharia Civil</b><small>Sua média passa a nota de corte</small></div>
+    </div>
+    <div class="flutua flutua--b">
+      <span class="avatar">L</span>
+      <div><b>Larissa, Farmácia</b><small>Ainda procura colega de quarto?</small></div>
+    </div>
+    <div class="flutua flutua--c">
+      <i class="flutua__check"></i>
+      <div><b>Notas cadastradas</b><small>Minha jornada · Concorrendo</small></div>
+    </div>
+  </div>
 </section>
 
-<section class="conta" id="calculadora" aria-labelledby="conta-titulo">
-  <div class="conta__topo">
-    <div>
-      <h2 id="conta-titulo" class="revela">Faça a conta do Sisu aqui</h2>
-      <p class="revela">Cada curso dá um peso a cada área do Enem. Mude as notas e os pesos: a média que conta aparece na hora, como na calculadora do app.</p>
-      <p class="conta__nota revela">Aqui é só a conta. No app, a média é comparada com o histórico de notas de corte do curso e da sua modalidade de cota.</p>
-    </div>
-    <output class="conta__resultado revela" id="media" for="calc" aria-live="polite">
-      <span id="media-valor">653,60</span>
-      <small>média ponderada</small>
-    </output>
+<section class="jornada" id="jornada" aria-labelledby="jornada-titulo">
+  <div class="jornada__cabeca">
+    <h2 id="jornada-titulo">Uma tela para cada fase</h2>
+    <p>O app pergunta em que momento você está e muda junto com você, da escolha do curso ao primeiro semestre.</p>
   </div>
 
-  <form class="conta__controles revela" id="calc">
-    <div class="pesos" role="group" aria-label="Pesos de exemplo">
-      <button type="button" data-pesos="1,1,1,1,1" aria-pressed="true">Pesos iguais</button>
-      <button type="button" data-pesos="1,1,3,3,2" aria-pressed="false">Exatas</button>
-      <button type="button" data-pesos="3,3,1,1,2" aria-pressed="false">Humanas</button>
-      <button type="button" data-pesos="1,1,4,2,2" aria-pressed="false">Saúde</button>
-    </div>
-  </form>
+  <div class="jornada__corpo">
+    <ol class="fases" id="fases">
+      <li class="fase" data-i="0">
+        <span class="fase__ponto" aria-hidden="true"></span>
+        <h3>Explorando</h3>
+        <p>Coloque suas notas do Enem. O app calcula a média com o peso de cada curso e diz se a chance é muito alta, boa, arriscada ou difícil, olhando as notas de corte de 2018 a 2025.</p>
+      </li>
+      <li class="fase" data-i="1">
+        <span class="fase__ponto" aria-hidden="true"></span>
+        <h3>Concorrendo</h3>
+        <p>Chegou o Sisu. Minha jornada vira uma lista: duas opções de curso, cota que você consegue comprovar, inscrição e lista de espera. O que custa a vaga vem marcado.</p>
+      </li>
+      <li class="fase" data-i="2">
+        <span class="fase__ponto" aria-hidden="true"></span>
+        <h3>Ingressando</h3>
+        <p>Aprovado. Edital, documentos, comprovação da cota e confirmação de matrícula, cada passo com o link oficial da sua universidade.</p>
+      </li>
+      <li class="fase" data-i="3">
+        <span class="fase__ponto" aria-hidden="true"></span>
+        <h3>Instalando-se</h3>
+        <p>Vai mudar de cidade? Procure quarto ou república perto do campus, encontre calouros procurando colega e converse pelo chat antes de fechar.</p>
+      </li>
+      <li class="fase" data-i="4">
+        <span class="fase__ponto" aria-hidden="true"></span>
+        <h3>Cursando</h3>
+        <p>Já lá dentro, a ficha da sua federal junta calendário acadêmico, restaurante universitário, assistência estudantil e o sistema acadêmico.</p>
+      </li>
+    </ol>
 
-  <div class="barras" id="barras" data-ui>
-    <div class="barra" data-area="0" style="--nota:620">
-      <label for="n0">Linguagens</label>
-      <input id="n0" type="range" min="0" max="1000" step="1" value="620">
-      <div class="barra__corpo"><b>620</b><small>peso <span>1</span></small></div>
+    <figure class="jornada__palco" aria-hidden="true">
+      <div class="celular" id="celular-jornada" data-tela="0">
+        <div class="celular__tela">
+
+          <div class="tela" data-i="0">
+            <div class="tela__barra">Calculadora</div>
+            <div class="nota-resumo">
+              <small>Sua média</small>
+              <strong>712,40</strong>
+              <span>Ampla Concorrência</span>
+            </div>
+            <ul class="chances">
+              <li><div><b>Engenharia Civil</b><small>Nota de corte 698,12</small></div><span class="selo selo--verde">Muito Alta</span></li>
+              <li><div><b>Arquitetura</b><small>Nota de corte 709,85</small></div><span class="selo selo--azul">Boa</span></li>
+              <li><div><b>Computação</b><small>Nota de corte 731,40</small></div><span class="selo selo--ambar">Arriscado</span></li>
+              <li><div><b>Medicina</b><small>Nota de corte 794,26</small></div><span class="selo selo--vermelho">Difícil</span></li>
+            </ul>
+          </div>
+
+          <div class="tela" data-i="1">
+            <div class="tela__barra">Minha jornada</div>
+            <p class="tela__etapa">Concorrendo · 2 de 6</p>
+            <ul class="passos">
+              <li class="feito"><i></i><span>Cadastre suas notas do Enem</span></li>
+              <li class="feito"><i></i><span>Escolha suas duas opções de curso</span></li>
+              <li class="critico"><i></i><span>Confira se você consegue comprovar a cota<em>Não pode passar</em></span></li>
+              <li class="critico"><i></i><span>Faça a inscrição no Sisu<em>Não pode passar</em></span></li>
+              <li class="aviso"><i></i><span>A nota de corte parcial muda todo dia<em>Vale saber</em></span></li>
+            </ul>
+          </div>
+
+          <div class="tela" data-i="2">
+            <div class="tela__barra">Minha jornada</div>
+            <p class="tela__etapa">Ingressando · 2 de 7</p>
+            <ul class="passos">
+              <li class="feito"><i></i><span>Leia o edital de matrícula</span></li>
+              <li class="feito"><i></i><span>Separe os documentos</span></li>
+              <li><i></i><span>Junte a comprovação da cota</span></li>
+              <li class="aviso"><i></i><span>Algumas universidades pedem confirmação no início das aulas<em>Vale saber</em></span></li>
+              <li><i></i><span>Veja a assistência estudantil</span></li>
+            </ul>
+          </div>
+
+          <div class="tela" data-i="3">
+            <div class="tela__barra">Moradia</div>
+            <div class="abas"><span class="ativa">Procuro Colega</span><span>Oferecer Vaga</span></div>
+            <div class="anuncio">
+              <div class="anuncio__planta"><span></span><span></span><span></span></div>
+              <b>Quarto em república mista</b>
+              <small>12 min a pé do campus · 3 moradores</small>
+              <strong>R$ 650/mês</strong>
+            </div>
+            <div class="colega"><span class="avatar">L</span><div><b>Larissa, Farmácia</b><small>Não fumante · Organizada</small></div></div>
+            <div class="colega"><span class="avatar avatar--b">T</span><div><b>Tiago, Engenharia</b><small>Tem pet · Acorda cedo</small></div></div>
+          </div>
+
+          <div class="tela" data-i="4">
+            <div class="tela__barra">Minha instituição</div>
+            <p class="tela__etapa">UFMG · Belo Horizonte</p>
+            <ul class="links-app">
+              <li><i class="ic ic--cal"></i>Calendário acadêmico</li>
+              <li><i class="ic ic--ru"></i>Restaurante universitário</li>
+              <li><i class="ic ic--mao"></i>Assistência estudantil</li>
+              <li><i class="ic ic--casa"></i>Moradia estudantil</li>
+              <li><i class="ic ic--sis"></i>Sistema acadêmico</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      <figcaption>Telas do app com dados de exemplo</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="simulador" id="simulador" aria-labelledby="sim-titulo">
+  <div class="simulador__texto">
+    <h2 id="sim-titulo">Teste a conta do Sisu</h2>
+    <p>Cada curso dá um peso a cada área do Enem. Escolha um curso, mexa nas notas e veja a média que conta e a chance mudarem na hora.</p>
+    <div class="cursos" role="group" aria-label="Curso de exemplo" id="cursos">
+      <button type="button" data-curso="0" aria-pressed="true">Engenharia Civil</button>
+      <button type="button" data-curso="1" aria-pressed="false">Medicina</button>
+      <button type="button" data-curso="2" aria-pressed="false">Direito</button>
+      <button type="button" data-curso="3" aria-pressed="false">Psicologia</button>
+      <button type="button" data-curso="4" aria-pressed="false">Computação</button>
     </div>
-    <div class="barra" data-area="1" style="--nota:640">
-      <label for="n1">Humanas</label>
-      <input id="n1" type="range" min="0" max="1000" step="1" value="640">
-      <div class="barra__corpo"><b>640</b><small>peso <span>1</span></small></div>
+    <div class="notas" id="notas">
+      <div class="nota" style="--cor: var(--area-linguagens)">
+        <label for="n0">Linguagens <span>peso <b>1</b></span></label>
+        <input id="n0" type="range" min="300" max="1000" step="1" value="640">
+        <output for="n0">640</output>
+      </div>
+      <div class="nota" style="--cor: var(--area-humanas)">
+        <label for="n1">Humanas <span>peso <b>1</b></span></label>
+        <input id="n1" type="range" min="300" max="1000" step="1" value="660">
+        <output for="n1">660</output>
+      </div>
+      <div class="nota" style="--cor: var(--area-natureza)">
+        <label for="n2">Natureza <span>peso <b>1</b></span></label>
+        <input id="n2" type="range" min="300" max="1000" step="1" value="690">
+        <output for="n2">690</output>
+      </div>
+      <div class="nota" style="--cor: var(--area-matematica)">
+        <label for="n3">Matemática <span>peso <b>1</b></span></label>
+        <input id="n3" type="range" min="300" max="1000" step="1" value="740">
+        <output for="n3">740</output>
+      </div>
+      <div class="nota" style="--cor: var(--area-redacao)">
+        <label for="n4">Redação <span>peso <b>1</b></span></label>
+        <input id="n4" type="range" min="300" max="1000" step="20" value="820">
+        <output for="n4">820</output>
+      </div>
     </div>
-    <div class="barra" data-area="2" style="--nota:590">
-      <label for="n2">Natureza</label>
-      <input id="n2" type="range" min="0" max="1000" step="1" value="590">
-      <div class="barra__corpo"><b>590</b><small>peso <span>1</span></small></div>
+  </div>
+
+  <div class="resultado" aria-live="polite" id="resultado">
+    <p class="resultado__curso" id="res-curso">Engenharia Civil</p>
+    <p class="resultado__rotulo">Sua média</p>
+    <p class="resultado__media" id="res-media">711,20</p>
+    <span class="selo selo--verde selo--grande" id="res-selo">Muito Alta</span>
+    <div class="regua" aria-hidden="true">
+      <div class="regua__trilho"><span class="regua__corte" id="res-marca"></span><span class="regua__voce" id="res-voce"></span></div>
+      <div class="regua__legenda"><span>Você</span><span>Nota de corte <b id="res-corte">698,12</b></span></div>
     </div>
-    <div class="barra" data-area="3" style="--nota:658">
-      <label for="n3">Matemática</label>
-      <input id="n3" type="range" min="0" max="1000" step="1" value="658">
-      <div class="barra__corpo"><b>658</b><small>peso <span>1</span></small></div>
-    </div>
-    <div class="barra" data-area="4" style="--nota:760">
-      <label for="n4">Redação</label>
-      <input id="n4" type="range" min="0" max="1000" step="1" value="760">
-      <div class="barra__corpo"><b>760</b><small>peso <span>1</span></small></div>
-    </div>
+    <p class="resultado__nota">Nota de corte de exemplo. No app, a chance vem do histórico de 2018 a 2025 do curso e da sua modalidade de cota.</p>
   </div>
 </section>
 
 <section class="fichas" id="universidades" aria-labelledby="fichas-titulo">
-  <div class="fichas__indice">
-    <h2 id="fichas-titulo" class="revela">A ficha de cada federal</h2>
-    <p class="revela">Matrícula, calendário, assistência, moradia e restaurante: os links oficiais, conferidos um a um. Escolha uma universidade.</p>
-    <div class="fichas__lista revela" id="lista-fichas" role="group" aria-label="Universidades"></div>
+  <div class="fichas__texto">
+    <h2 id="fichas-titulo">A ficha de cada federal</h2>
+    <p>Matrícula, calendário, assistência, moradia e restaurante: os links oficiais de cada universidade, conferidos um a um.</p>
+    <div class="fichas__lista" id="lista-fichas" role="group" aria-label="Universidades"></div>
   </div>
-  <div class="fichas__palco">
-    <article class="folha" data-ui id="folha" aria-live="polite">
-      <header class="folha__topo">
-        <h3 id="folha-sigla">UFMG</h3>
-        <p id="folha-nome">Universidade Federal de Minas Gerais · Belo Horizonte, MG</p>
-      </header>
-      <ol class="folha__itens" id="folha-itens">
-        <li><a href="https://www.ufmg.br/sisu/" target="_blank" rel="noopener noreferrer">Sisu na UFMG</a></li>
-        <li><a href="https://www.ufmg.br/drca/calendario/" target="_blank" rel="noopener noreferrer">Calendário acadêmico</a></li>
-        <li><a href="https://fump.ufmg.br/" target="_blank" rel="noopener noreferrer">Fump: assistência estudantil</a></li>
-        <li><a href="https://fump.ufmg.br/programa-de-moradia/" target="_blank" rel="noopener noreferrer">Programa de Moradia Universitária</a></li>
-        <li><a href="https://fump.ufmg.br/programa-de-alimentacao/" target="_blank" rel="noopener noreferrer">Restaurantes universitários</a></li>
-        <li><a href="https://fump.ufmg.br/saude/" target="_blank" rel="noopener noreferrer">Atenção à saúde e atendimento psicológico</a></li>
-        <li><a href="https://minha.ufmg.br/" target="_blank" rel="noopener noreferrer">minhaUFMG</a></li>
-        <li><a href="https://www.ufmg.br/" target="_blank" rel="noopener noreferrer">Site oficial da UFMG</a></li>
-      </ol>
-      <p class="folha__pe" id="folha-data">Links conferidos em 2026.</p>
-    </article>
-  </div>
+  <article class="folha" id="folha" aria-live="polite">
+    <header class="folha__topo">
+      <span class="folha__sigla" id="folha-sigla">UFMG</span>
+      <p id="folha-nome">Universidade Federal de Minas Gerais · Belo Horizonte, MG</p>
+    </header>
+    <ul class="folha__itens" id="folha-itens">
+      <li><a href="https://www.ufmg.br/sisu/" target="_blank" rel="noopener noreferrer">Sisu na UFMG</a></li>
+      <li><a href="https://www.ufmg.br/drca/calendario/" target="_blank" rel="noopener noreferrer">Calendário acadêmico</a></li>
+      <li><a href="https://fump.ufmg.br/" target="_blank" rel="noopener noreferrer">Fump: assistência estudantil</a></li>
+      <li><a href="https://fump.ufmg.br/programa-de-moradia/" target="_blank" rel="noopener noreferrer">Programa de Moradia Universitária</a></li>
+      <li><a href="https://fump.ufmg.br/programa-de-alimentacao/" target="_blank" rel="noopener noreferrer">Restaurantes universitários</a></li>
+      <li><a href="https://minha.ufmg.br/" target="_blank" rel="noopener noreferrer">minhaUFMG</a></li>
+    </ul>
+    <p class="folha__pe" id="folha-data">Links conferidos em 2026.</p>
+  </article>
 </section>
 
-<section class="recursos" aria-labelledby="recursos-titulo">
-  <h2 id="recursos-titulo" class="revela">O que mais vem no app</h2>
-  <div class="recurso">
-    <div class="recurso__texto revela">
-      <h3>Notas de corte de 2018 a 2025</h3>
-      <p>Para cada curso, veja como a nota de corte variou edição a edição do Sisu, separada por modalidade: ampla concorrência, escola pública, renda e PPI.</p>
-    </div>
-    <div class="recurso__tela recurso__tela--grande revela" aria-hidden="true">
-      <div class="mini-tela" data-ui>
-        <b>Engenharia Civil · Integral</b>
-        <svg class="grafico" viewBox="0 0 320 140">
-          <polyline points="10,98 55,86 100,92 145,70 190,62 235,74 280,48 310,40"/>
-          <g><circle cx="10" cy="98" r="5"/><circle cx="55" cy="86" r="5"/><circle cx="100" cy="92" r="5"/><circle cx="145" cy="70" r="5"/><circle cx="190" cy="62" r="5"/><circle cx="235" cy="74" r="5"/><circle cx="280" cy="48" r="5"/><circle class="ultimo" cx="310" cy="40" r="7"/></g>
+<section class="extras" aria-labelledby="extras-titulo">
+  <h2 id="extras-titulo">E o que vem junto</h2>
+  <div class="bento">
+    <article class="bloco bloco--corte">
+      <div class="bloco__texto">
+        <h3>Notas de corte de 2018 a 2025</h3>
+        <p>Veja como a nota de corte de cada curso variou edição a edição, separada por modalidade de cota.</p>
+      </div>
+      <div class="grafico" aria-hidden="true">
+        <svg viewBox="0 0 400 160" preserveAspectRatio="none">
+          <path class="grafico__area" d="M0 120 L57 104 L114 112 L171 86 L228 76 L285 90 L342 58 L400 46 L400 160 L0 160 Z"/>
+          <path class="grafico__linha" pathLength="1" d="M0 120 L57 104 L114 112 L171 86 L228 76 L285 90 L342 58 L400 46"/>
         </svg>
         <div class="grafico__anos"><span>2018</span><span>2025</span></div>
       </div>
-    </div>
-  </div>
-  <div class="recurso">
-    <div class="recurso__texto revela">
-      <h3>Moradia perto do campus</h3>
-      <p>Anúncios de quarto e república ligados à universidade em que você vai estudar, com o mapa do bairro, o preço e quem já mora lá.</p>
-    </div>
-    <div class="recurso__tela revela" aria-hidden="true">
-      <div class="mini-mapa" data-ui>
-        <span class="quadra q1"></span><span class="quadra q2"></span><span class="quadra q3"></span><span class="quadra q4"></span><span class="quadra q5"></span>
-        <span class="rua r1"></span><span class="rua r2"></span>
-        <span class="mapa-campus">Campus</span>
-        <span class="preco p1">R$ 650</span><span class="preco p2">R$ 820</span><span class="preco p3">R$ 540</span>
-      </div>
-    </div>
-  </div>
-  <div class="recurso">
-    <div class="recurso__texto revela">
-      <h3>Colega de quarto que combina</h3>
-      <p>Calouros do mesmo campus dizem orçamento, rotina e manias. Achou alguém? O chat abre ali mesmo, antes de qualquer contrato.</p>
-    </div>
-    <div class="recurso__tela recurso__tela--estreita revela" aria-hidden="true">
-      <div class="conversa" data-ui>
-        <p class="msg">Oi! Vi que você também vai pra Farmácia. Ainda procura quarto?</p>
-        <p class="msg msg--eu">Procuro sim! Até uns R$ 700, perto do campus.</p>
-        <p class="msg">A república aqui tem uma vaga a 12 minutos a pé.</p>
-      </div>
-    </div>
-  </div>
-  <div class="recurso">
-    <div class="recurso__texto revela">
-      <h3>O que não pode passar, em destaque</h3>
-      <p>Inscrição, comprovação da cota, lista de espera e edital de matrícula vêm marcados. Perder um deles custa a vaga, então o app não deixa sumir na lista.</p>
-    </div>
-    <div class="recurso__tela revela" aria-hidden="true">
-      <div class="mini-passo" data-ui>
-        <em>Não pode passar</em>
-        <b>Manifeste interesse na lista de espera</b>
-        <small>Sem isso, você fica de fora das chamadas seguintes.</small>
-      </div>
-    </div>
-  </div>
-</section>
+    </article>
 
-<section class="sobre" id="sobre" aria-labelledby="sobre-titulo">
-  <div class="sobre__texto">
-    <h2 id="sobre-titulo" class="revela">Por que o UniPath existe</h2>
-    <p class="sobre__lead revela">Ele nasceu de uma lista: tudo o que o estudante vai percorrer na graduação e que ninguém costuma avisar.</p>
-    <p class="sobre__corpo revela">É para quem é o primeiro da família na universidade, para quem muda de cidade para estudar e para quem já está lá dentro e se perde no calendário.</p>
+    <article class="bloco bloco--mapa">
+      <div class="mapa" aria-hidden="true">
+        <span class="mapa__rua mapa__rua--h"></span><span class="mapa__rua mapa__rua--v"></span>
+        <span class="mapa__campus">Campus</span>
+        <span class="mapa__preco" style="--x:18%;--y:22%">R$ 650</span>
+        <span class="mapa__preco" style="--x:62%;--y:64%">R$ 820</span>
+        <span class="mapa__preco" style="--x:24%;--y:72%">R$ 540</span>
+      </div>
+      <div class="bloco__texto">
+        <h3>Moradia perto do campus</h3>
+        <p>Quartos e repúblicas ligados à sua universidade, com preço e quem já mora lá.</p>
+      </div>
+    </article>
+
+    <article class="bloco bloco--chat">
+      <div class="conversa" aria-hidden="true">
+        <p class="msg">Também vai pra Farmácia? Ainda procura quarto?</p>
+        <p class="msg msg--eu">Procuro! Até R$ 700, perto do campus.</p>
+        <p class="msg msg--digitando"><span></span><span></span><span></span></p>
+      </div>
+      <div class="bloco__texto">
+        <h3>Colega de quarto que combina</h3>
+        <p>Orçamento, rotina e manias na mesa antes do contrato. O chat abre ali mesmo.</p>
+      </div>
+    </article>
+
+    <article class="bloco bloco--alerta">
+      <span class="app-tag app-tag--critico">Não pode passar</span>
+      <h3>Manifeste interesse na lista de espera</h3>
+      <p>Inscrição, cota, lista de espera e edital vêm em destaque. Perder um deles custa a vaga.</p>
+    </article>
+
+    <dl class="bloco bloco--numeros">
+      <div><dt>5</dt><dd>fases, do Enem à formatura</dd></div>
+      <div><dt>13</dt><dd>passos entre o Sisu e a matrícula</dd></div>
+      <div><dt>11</dt><dd>federais com ficha pronta</dd></div>
+      <div><dt>75</dt><dd>links oficiais conferidos</dd></div>
+    </dl>
   </div>
-  <div class="sobre__arte revela" aria-hidden="true">
-    <svg viewBox="0 0 600 420" class="campus">
-      <rect class="ceu" width="600" height="420"/>
-      <circle class="sol" cx="470" cy="110" r="54"/>
-      <g class="predios">
-        <rect x="40" y="200" width="120" height="220"/>
-        <rect x="170" y="150" width="90" height="270"/>
-        <rect x="270" y="230" width="150" height="190"/>
-        <rect x="430" y="180" width="130" height="240"/>
-      </g>
-      <g class="janelas">
-        <rect x="62" y="226" width="22" height="30"/><rect x="114" y="226" width="22" height="30"/>
-        <rect x="62" y="286" width="22" height="30"/><rect x="114" y="286" width="22" height="30"/>
-        <rect x="192" y="178" width="18" height="26"/><rect x="222" y="178" width="18" height="26"/>
-        <rect x="192" y="232" width="18" height="26"/><rect x="222" y="232" width="18" height="26"/>
-        <rect x="296" y="256" width="26" height="34"/><rect x="368" y="256" width="26" height="34"/>
-        <rect x="456" y="206" width="24" height="30"/><rect x="510" y="206" width="24" height="30"/>
-        <rect x="456" y="266" width="24" height="30"/><rect x="510" y="266" width="24" height="30"/>
-      </g>
-      <path class="caminho" d="M0 400 C 120 360, 200 410, 300 380 S 480 340, 600 370"/>
-    </svg>
-  </div>
-  <dl class="sobre__fatos revela">
-    <div><dt>5</dt><dd>fases, do Enem à formatura</dd></div>
-    <div><dt>13</dt><dd>passos entre o Sisu e a matrícula</dd></div>
-    <div><dt>11</dt><dd>federais com ficha pronta</dd></div>
-    <div><dt>75</dt><dd>links oficiais conferidos</dd></div>
-  </dl>
 </section>
 
 <section class="faq" id="perguntas" aria-labelledby="faq-titulo">
-  <h2 id="faq-titulo" class="faq__titulo revela">Antes de baixar</h2>
+  <h2 id="faq-titulo">Antes de baixar</h2>
   <div class="faq__lista">
     <details name="faq" open>
       <summary>O UniPath é pago?</summary>
@@ -343,7 +345,7 @@
     </details>
     <details name="faq">
       <summary>Serve para faculdade particular, Prouni ou Fies?</summary>
-      <p>Não. O UniPath é feito para as universidades federais e para quem entra por elas pelo Sisu.</p>
+      <p>Não. O UniPath é feito para as universidades federais e para quem entra nelas pelo Sisu.</p>
     </details>
     <details name="faq">
       <summary>A chance que o app mostra garante a vaga?</summary>
@@ -351,7 +353,7 @@
     </details>
     <details name="faq">
       <summary>De onde vêm os dados?</summary>
-      <p>As notas de corte vêm das planilhas oficiais do Sisu, e o cadastro das universidades vem do Censo da Educação Superior do Inep. Os links de cada ficha são conferidos à mão, e a data da conferência aparece na ficha.</p>
+      <p>As notas de corte vêm das planilhas oficiais do Sisu, e o cadastro das universidades vem do Censo da Educação Superior do Inep. Os links de cada ficha são conferidos à mão, com a data da conferência.</p>
     </details>
     <details name="faq">
       <summary>Ainda não fiz o Enem. Já dá para usar?</summary>
@@ -366,18 +368,18 @@
 
 <section class="convite" id="comecar" aria-labelledby="convite-titulo">
   <div class="convite__texto">
-    <h2 id="convite-titulo" class="revela">Em que fase você está?</h2>
-    <p class="revela">É a primeira pergunta que o app faz. Escolha a sua e veja por onde ele começa.</p>
+    <h2 id="convite-titulo">Em que fase você está?</h2>
+    <p>É a primeira pergunta que o app faz. Escolha a sua e veja por onde ele começa.</p>
   </div>
-  <div class="dialogo revela" data-ui role="group" aria-labelledby="dialogo-titulo">
-    <img src="img/icone.png" alt="" width="56" height="56">
+  <div class="dialogo" role="group" aria-labelledby="dialogo-titulo">
+    <img src="img/icone.png" alt="" width="52" height="52">
     <p class="dialogo__titulo" id="dialogo-titulo">Bem-vindo ao UniPath</p>
     <div class="dialogo__opcoes">
-      <a href="#tour" data-ir="0">Ainda estou escolhendo</a>
-      <a href="#tour" data-ir="1">Vou me inscrever no Sisu</a>
-      <a href="#tour" data-ir="2">Fui aprovado</a>
-      <a href="#tour" data-ir="3">Vou mudar de cidade</a>
-      <a href="#tour" data-ir="4">Já estou na universidade</a>
+      <a href="#jornada" data-ir="0">Ainda estou escolhendo</a>
+      <a href="#jornada" data-ir="1">Vou me inscrever no Sisu</a>
+      <a href="#jornada" data-ir="2">Fui aprovado</a>
+      <a href="#jornada" data-ir="3">Vou mudar de cidade</a>
+      <a href="#jornada" data-ir="4">Já estou na universidade</a>
     </div>
   </div>
 </section>
@@ -385,14 +387,19 @@
 </main>
 
 <footer class="rodape">
-  <nav class="rodape__links" aria-label="Rodapé">
-    <a href="#tour">Como funciona</a>
-    <a href="#calculadora">Calculadora</a>
-    <a href="#universidades">Universidades</a>
-    <a href="#perguntas">Perguntas</a>
-  </nav>
+  <div class="rodape__linha">
+    <a class="marca marca--claro" href="#topo" aria-label="UniPath, início">
+      <img src="img/icone.png" alt="" width="30" height="30">
+      <span>UniPath</span>
+    </a>
+    <nav class="rodape__links" aria-label="Rodapé">
+      <a href="#jornada">Como funciona</a>
+      <a href="#simulador">Simulador</a>
+      <a href="#universidades">Universidades</a>
+      <a href="#perguntas">Dúvidas</a>
+    </nav>
+  </div>
   <p class="rodape__legal">© 2026 UniPath. Projeto em desenvolvimento, sem vínculo com o MEC, o Inep ou as universidades citadas.</p>
-  <p class="rodape__nome" aria-hidden="true">UniPath</p>
 </footer>
 
 <script type="module" src="js/main.js"></script>

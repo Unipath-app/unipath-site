@@ -1,53 +1,82 @@
 import { FICHAS } from './fichas.js';
 
-const FASES = ['Explorando', 'Concorrendo', 'Ingressando', 'Instalando-se', 'Cursando'];
 const FICHA_INICIAL = 'UFMG';
+const CORES_FASE = 5;
+const REGUA_MIN = 550;
+const REGUA_MAX = 850;
+const NOTA_MIN = 300;
+const NOTA_MAX = 1000;
+const MARGEM_MUITO_ALTA = 10;
+const MARGEM_ARRISCADO = -25;
+
+const CURSOS = [
+  { nome: 'Engenharia Civil', pesos: [1, 1, 2, 3, 1], corte: 698.12 },
+  { nome: 'Medicina', pesos: [1, 1, 3, 2, 2], corte: 794.26 },
+  { nome: 'Direito', pesos: [2, 3, 1, 1, 2], corte: 718.5 },
+  { nome: 'Psicologia', pesos: [1, 2, 2, 1, 2], corte: 709.85 },
+  { nome: 'Computação', pesos: [1, 1, 2, 4, 1], corte: 731.4 },
+];
+
 const formatoNota = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const formatoData = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' });
+
+const limitar = (valor, min, max) => Math.min(max, Math.max(min, valor));
 
 const iniciarHero = () => {
   const hero = document.querySelector('.hero');
   requestAnimationFrame(() => requestAnimationFrame(() => hero.classList.add('pronto')));
 };
 
-const iniciarRevelacao = () => {
-  const alvos = document.querySelectorAll('.revela');
-  if (!('IntersectionObserver' in window)) {
-    alvos.forEach((alvo) => alvo.classList.add('visivel'));
-    return;
-  }
-  document.querySelectorAll('section').forEach((secao) => {
-    secao.querySelectorAll('.revela').forEach((alvo, ordem) => alvo.style.setProperty('--atraso', `${ordem * 80}ms`));
-  });
-  const observador = new IntersectionObserver((entradas) => {
-    entradas.filter((entrada) => entrada.isIntersecting).forEach((entrada) => {
-      entrada.target.classList.add('visivel');
-      observador.unobserve(entrada.target);
-    });
-  }, { threshold: 0.15 });
-  alvos.forEach((alvo) => observador.observe(alvo));
+const iniciarTopo = () => {
+  const topo = document.getElementById('topo');
+  const atualizar = () => topo.classList.toggle('rolou', window.scrollY > 12);
+  window.addEventListener('scroll', atualizar, { passive: true });
+  atualizar();
 };
 
-const iniciarTour = () => {
-  const tour = document.getElementById('tour');
-  const entrada = document.getElementById('etapa');
-  const rotulos = tour.querySelectorAll('[data-ir]');
-  const camadas = tour.querySelectorAll('.fala, .tela');
+const iniciarJornada = () => {
+  const lista = document.getElementById('fases');
+  const fases = [...lista.querySelectorAll('.fase')];
+  const telas = document.querySelectorAll('#celular-jornada .tela');
+  const palco = document.querySelector('.jornada__palco');
+  let atual = -1;
+  let agendado = false;
 
   const mostrar = (indice) => {
-    tour.dataset.etapa = String(indice);
-    entrada.value = String(indice);
-    entrada.setAttribute('aria-valuetext', FASES[indice]);
-    camadas.forEach((camada) => camada.classList.toggle('ativa', camada.dataset.i === String(indice)));
-    rotulos.forEach((rotulo) => rotulo.setAttribute('aria-pressed', String(rotulo.dataset.ir === String(indice))));
+    if (indice === atual) return;
+    atual = indice;
+    fases.forEach((fase, i) => {
+      fase.classList.toggle('ativa', i === indice);
+      fase.classList.toggle('passou', i < indice);
+    });
+    telas.forEach((tela) => tela.classList.toggle('ativa', tela.dataset.i === String(indice)));
+    palco.dataset.cor = String(indice % CORES_FASE);
   };
 
-  entrada.addEventListener('input', () => mostrar(Number(entrada.value)));
-  rotulos.forEach((rotulo) => rotulo.addEventListener('click', () => mostrar(Number(rotulo.dataset.ir))));
+  const medir = () => {
+    agendado = false;
+    const meio = window.innerHeight * 0.55;
+    const caixa = lista.getBoundingClientRect();
+    lista.style.setProperty('--progresso', String(limitar((meio - caixa.top) / caixa.height, 0, 1)));
+    const passadas = fases.filter((fase) => fase.getBoundingClientRect().top <= meio).length;
+    mostrar(Math.max(0, passadas - 1));
+  };
+
+  const agendar = () => {
+    if (agendado) return;
+    agendado = true;
+    requestAnimationFrame(medir);
+  };
+
+  window.addEventListener('scroll', agendar, { passive: true });
+  window.addEventListener('resize', agendar);
   document.querySelectorAll('.dialogo [data-ir]').forEach((opcao) => {
-    opcao.addEventListener('click', () => mostrar(Number(opcao.dataset.ir)));
+    opcao.addEventListener('click', (evento) => {
+      evento.preventDefault();
+      fases[Number(opcao.dataset.ir)].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
   });
-  mostrar(0);
+  medir();
 };
 
 const mediaPonderada = (notas, pesos) => {
@@ -56,30 +85,51 @@ const mediaPonderada = (notas, pesos) => {
   return somaPesos === 0 ? 0 : somaNotas / somaPesos;
 };
 
-const iniciarCalculadora = () => {
-  const barras = [...document.querySelectorAll('.barra')];
-  const botoesPeso = document.querySelectorAll('[data-pesos]');
-  const valor = document.getElementById('media-valor');
-  let pesos = [1, 1, 1, 1, 1];
+const chancePorMargem = (margem) => {
+  if (margem >= MARGEM_MUITO_ALTA) return { texto: 'Muito Alta', cor: 'verde' };
+  if (margem >= 0) return { texto: 'Boa', cor: 'azul' };
+  if (margem >= MARGEM_ARRISCADO) return { texto: 'Arriscado', cor: 'ambar' };
+  return { texto: 'Difícil', cor: 'vermelho' };
+};
+
+const posicaoNaRegua = (nota) => `${limitar((nota - REGUA_MIN) / (REGUA_MAX - REGUA_MIN), 0, 1) * 100}%`;
+
+const iniciarSimulador = () => {
+  const botoes = [...document.querySelectorAll('#cursos [data-curso]')];
+  const notas = [...document.querySelectorAll('#notas .nota')];
+  const selo = document.getElementById('res-selo');
+  let curso = CURSOS[0];
+  let chanceAnterior = '';
 
   const atualizar = () => {
-    const notas = barras.map((barra) => Number(barra.querySelector('input').value));
-    const contribuicoes = notas.map((nota, i) => nota * pesos[i]);
-    const lider = contribuicoes.indexOf(Math.max(...contribuicoes));
-    barras.forEach((barra, i) => {
-      barra.style.setProperty('--nota', String(notas[i]));
-      barra.querySelector('b').textContent = String(notas[i]);
-      barra.querySelector('small span').textContent = String(pesos[i]);
-      barra.classList.toggle('lider', i === lider);
+    const valores = notas.map((nota) => Number(nota.querySelector('input').value));
+    notas.forEach((nota, i) => {
+      const entrada = nota.querySelector('input');
+      entrada.style.setProperty('--p', `${((valores[i] - NOTA_MIN) / (NOTA_MAX - NOTA_MIN)) * 100}%`);
+      nota.querySelector('output').textContent = String(valores[i]);
+      nota.querySelector('label b').textContent = String(curso.pesos[i]);
     });
-    valor.textContent = formatoNota.format(mediaPonderada(notas, pesos));
+    const media = mediaPonderada(valores, curso.pesos);
+    const chance = chancePorMargem(media - curso.corte);
+    document.getElementById('res-curso').textContent = curso.nome;
+    document.getElementById('res-media').textContent = formatoNota.format(media);
+    document.getElementById('res-corte').textContent = formatoNota.format(curso.corte);
+    document.getElementById('res-voce').style.setProperty('--x', posicaoNaRegua(media));
+    document.getElementById('res-marca').style.setProperty('--x', posicaoNaRegua(curso.corte));
+    selo.textContent = chance.texto;
+    selo.className = `selo selo--grande selo--${chance.cor}`;
+    if (chanceAnterior && chanceAnterior !== chance.texto) {
+      void selo.offsetWidth;
+      selo.classList.add('mudou');
+    }
+    chanceAnterior = chance.texto;
   };
 
-  barras.forEach((barra) => barra.querySelector('input').addEventListener('input', atualizar));
-  botoesPeso.forEach((botao) => {
+  notas.forEach((nota) => nota.querySelector('input').addEventListener('input', atualizar));
+  botoes.forEach((botao) => {
     botao.addEventListener('click', () => {
-      pesos = botao.dataset.pesos.split(',').map(Number);
-      botoesPeso.forEach((outro) => outro.setAttribute('aria-pressed', String(outro === botao)));
+      curso = CURSOS[Number(botao.dataset.curso)];
+      botoes.forEach((outro) => outro.setAttribute('aria-pressed', String(outro === botao)));
       atualizar();
     });
   });
@@ -121,16 +171,50 @@ const iniciarFichas = () => {
     const botao = document.createElement('button');
     botao.type = 'button';
     botao.setAttribute('aria-pressed', String(ficha.sigla === FICHA_INICIAL));
-    botao.innerHTML = `${ficha.sigla}<small></small>`;
-    botao.querySelector('small').textContent = ficha.uf;
+    botao.append(ficha.sigla);
+    const uf = document.createElement('small');
+    uf.textContent = ficha.uf;
+    botao.append(uf);
     botao.addEventListener('click', () => escolher(ficha, botao));
     lista.append(botao);
   });
   preencher(FICHAS.find((ficha) => ficha.sigla === FICHA_INICIAL));
 };
 
+const ALVOS_REVELACAO = [
+  '.jornada__cabeca > *',
+  '.simulador__texto > *',
+  '.resultado',
+  '.fichas__texto > *',
+  '.folha',
+  '.extras h2',
+  '.bloco',
+  '.faq h2',
+  '.faq details',
+  '.convite__texto > *',
+  '.dialogo',
+].join(',');
+
+const iniciarRevelacao = () => {
+  const alvos = [...document.querySelectorAll(ALVOS_REVELACAO)];
+  if (!('IntersectionObserver' in window)) return;
+  alvos.forEach((alvo) => {
+    const irmaos = [...alvo.parentElement.children].filter((filho) => alvos.includes(filho));
+    alvo.style.setProperty('--atraso', `${irmaos.indexOf(alvo) * 80}ms`);
+    alvo.classList.add('surge');
+  });
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.filter((entrada) => entrada.isIntersecting).forEach((entrada) => {
+      entrada.target.classList.add('visivel');
+      observador.unobserve(entrada.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  alvos.forEach((alvo) => observador.observe(alvo));
+};
+
 iniciarHero();
-iniciarTour();
-iniciarCalculadora();
+iniciarTopo();
+iniciarJornada();
+iniciarSimulador();
 iniciarFichas();
 iniciarRevelacao();
